@@ -1,5 +1,6 @@
 import React from "react";
 import Square from "./Square";
+import {calculateWinner} from "../domain/winner";
 
 class Board extends React.Component {
     constructor(props) {
@@ -12,6 +13,9 @@ class Board extends React.Component {
 
     handleClick(i){
         const squares = [...this.state.squares];
+        if(calculateWinner(squares) || squares[i]){
+            return;
+        }
         squares[i] = this.nextPlayer;
         this.setState({
             squares,
@@ -32,12 +36,19 @@ class Board extends React.Component {
         return this.state.xIsNext ? 'X' : '0';
     }
 
-    render() {
-        const status = `Next player: ${this.nextPlayer}`;
+    get status(){
+        const winner = calculateWinner(this.state.squares);
+        console.log({winner, squares: this.state.squares})
+        return winner ?
+            `Winner ${winner}` :
+            `Next player ${this.nextPlayer}`;
 
+    }
+
+    render() {
         return (
             <div>
-                <div className="status">{status}</div>
+                <div className="status">{this.status}</div>
                 <div className="board-row">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
