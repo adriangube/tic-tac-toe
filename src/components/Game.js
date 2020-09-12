@@ -1,6 +1,16 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Board from "./Board";
 import {calculateWinner} from "../domain/winner";
+import blue from "@material-ui/core/colors/blue";
+import red from "@material-ui/core/colors/red";
+import ClearIcon from '@material-ui/icons/Clear';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import Button from "@material-ui/core/Button";
+import ReplayIcon from '@material-ui/icons/Replay';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import {calculateIfGameIsOver} from "../domain/end-of-game";
 
 class Game extends React.Component {
     constructor(props) {
@@ -37,11 +47,29 @@ class Game extends React.Component {
         })
     }
 
+    getPlayerIcon(player, fontSize= 50){
+        return player === "X"
+            ? <ClearIcon style={{ fontSize, color: blue[400] }}/>
+            : <RadioButtonUncheckedIcon style={{ fontSize, color: red[400] }}/>
+    }
+
     status(squares){
         const winner = calculateWinner(squares);
+        const tiedGame = !winner && calculateIfGameIsOver(squares);
         return winner ?
-            `Winner ${winner}` :
-            `Next player ${this.nextPlayer}`;
+          <Fragment>
+              <span>Winner player</span>
+              {this.getPlayerIcon(winner)}
+          </Fragment>
+            :
+            tiedGame
+                ? <Fragment>
+                    <span>The game is tied</span>
+                </Fragment>
+                : <Fragment>
+                <span>Next player</span>
+                {this.getPlayerIcon(this.nextPlayer)}
+            </Fragment>
     }
 
 
@@ -53,29 +81,33 @@ class Game extends React.Component {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const status = this.status(current.squares);
-        const moves = history.map((step, move) => {
-            const description = move ?
-                `Go to move #${move}` :
-                `Go to game start`;
-            return (
-                <li key={move}>
-                    <button onClick={() => this.jumpTo(move)}>{description}</button>
-                </li>
-            );
-        });
-        return (
-            <div className="game">
-                <div className="game-board">
-                    <Board
-                        squares={current.squares}
-                        onClick={(i) => this.handleClick(i)}
-                    />
-                </div>
-                <div className="game-info">
-                    <div>{status}</div>
-                    <ol>{moves}</ol>
-                </div>
+        const gameActions = calculateIfGameIsOver(current.squares) &&
+            <div className="game-actions">
+                <div className="game-actions-label">Play Again</div>
+                <Button color="primary"  variant="contained" onClick={() => this.jumpTo(0)}>
+                    <ReplayIcon/>
+                </Button>
             </div>
+        return (
+            <Fragment>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="h6">
+                            Tic Tac Toe
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <div className="game">
+                    <div className="game-status">{status}</div>
+                    <div className="game-board">
+                        <Board
+                            squares={current.squares}
+                            onClick={(i) => this.handleClick(i)}
+                        />
+                    </div>
+                    {gameActions}
+                </div>
+            </Fragment>
         );
     }
 }

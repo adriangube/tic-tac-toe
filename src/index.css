@@ -1,6 +1,18 @@
+:root{
+    --main-bg-color: #121212;
+    --secondary-bg-color: #1d1d1d;
+    --grey-color: #323232;
+    --white-color: #ffffff;
+    --red-color: #ef5350;
+    --blue-color: #42a5f5;
+    --action-color: #1e88e5;
+}
+
+
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
+    margin: 0px;
+    box-sizing: border-box;
 }
 
 ol, ul {
@@ -18,33 +30,75 @@ ol, ul {
 }
 
 .square {
-    background: #fff;
-    border: 1px solid #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    width: 100px;
+    height: 100px;
+    background: var(--secondary-bg-color);
+    border: none;
     float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-    width: 34px;
+}
+
+.square:hover{
+    background-color: var(--grey-color);
+}
+
+.square.full{
+    background-color: var(--grey-color);
 }
 
 .square:focus {
     outline: none;
 }
 
-.kbd-navigation .square:focus {
-    background: #ddd;
-}
-
 .game {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 56px);
+    width: 100vw;
+    background-color: var(--main-bg-color);
+    overflow: hidden;
 }
 
 .game-info {
     margin-left: 20px;
+}
+
+.game-status{
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--white-color);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.game-status span{
+    margin-right: 8px;
+}
+
+
+.game-board{
+    margin-bottom: 32px;
+}
+
+.game-actions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-actions .game-actions-label{
+    font-size: 24px;
+    color: var(--white-color);
+    margin-bottom: 16px;
+}
+
+.game-actions .MuiButtonBase-root{
+    width: 300px;
 }

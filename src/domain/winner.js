@@ -18,4 +18,4 @@ export const calculateWinner = (squares) => {
         }
     });
     return winner;
-}
+};
