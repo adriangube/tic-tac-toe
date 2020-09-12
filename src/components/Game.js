@@ -11,6 +11,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import {calculateIfGameIsOver} from "../domain/end-of-game";
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 class Game extends React.Component {
     constructor(props) {
@@ -84,11 +85,14 @@ class Game extends React.Component {
 
         return (
             <Fragment>
-                <AppBar position="static">
+                <AppBar className="app-bar" position="static">
                     <Toolbar>
                         <Typography variant="h6">
                             Tic Tac Toe
                         </Typography>
+                        <Button color="inherit" onClick={ () => window.open("https://github.com/adriangube/tic-tac-toe")}>
+                            <GitHubIcon/>
+                        </Button>
                     </Toolbar>
                 </AppBar>
                 <div className="game">

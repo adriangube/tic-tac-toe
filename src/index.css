@@ -109,3 +109,8 @@ ol, ul {
 .game-actions .MuiButtonBase-root{
     width: 300px;
 }
+
+.app-bar .MuiTypography-root{
+    display: flex;
+    flex: 1 1 100%;
+}
