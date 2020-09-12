@@ -81,13 +81,7 @@ class Game extends React.Component {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const status = this.status(current.squares);
-        const gameActions = calculateIfGameIsOver(current.squares) &&
-            <div className="game-actions">
-                <div className="game-actions-label">Play Again</div>
-                <Button color="primary"  variant="contained" onClick={() => this.jumpTo(0)}>
-                    <ReplayIcon/>
-                </Button>
-            </div>
+
         return (
             <Fragment>
                 <AppBar position="static">
@@ -105,7 +99,13 @@ class Game extends React.Component {
                             onClick={(i) => this.handleClick(i)}
                         />
                     </div>
-                    {gameActions}
+
+                    <div className={`game-actions ${calculateIfGameIsOver(current.squares) ? 'visible' : ''}`}>
+                        <div className="game-actions-label">Play Again</div>
+                        <Button color="primary"  variant="contained" onClick={() => this.jumpTo(0)}>
+                            <ReplayIcon/>
+                        </Button>
+                    </div>
                 </div>
             </Fragment>
         );

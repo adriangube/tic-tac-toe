@@ -13,6 +13,7 @@ body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 0px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 ol, ul {
@@ -91,6 +92,12 @@ ol, ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 32px;
+    visibility: hidden;
+}
+
+.game-actions.visible{
+    visibility: visible;
 }
 
 .game-actions .game-actions-label{
