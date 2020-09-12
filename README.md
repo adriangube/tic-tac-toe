@@ -7,9 +7,9 @@ This project it's with educational purpose in order to learn and improve my own 
 
 # Demo
 
-You can play Tic Tac Toe from the following [demo](https://tic-tac-toe-fb71e.web.app/).
+You can play Tic Tac Toe from the following [demo](https://tic-tac-toe-fb71e.web.app/){:target="_blank" rel="noopener"}.
 
-## Getting Started
+# Getting Started
 
 These instructions will get you a copy of the project up and running in your local machine for development and testing purposes.a
 
