@@ -3,11 +3,11 @@
 This web app it's a personal version of the famous Tic Tac Toe game, made with [React](https://reactjs.org/). With this application you will be able to play with another person in the same device.
 This project it's with educational purpose in order to learn and improve my own React skills, therefore it is not an application for profit or to create a valid product for a production environment.
 
-[Tic Tac Toe Image](demo/full-image.png)
+![Tic Tac Toe Image](demo/full-image.png)
 
 # Demo
 
-You can play Tic Tac Toe from the following [Demo](https://tic-tac-toe-fb71e.web.app/).
+You can play Tic Tac Toe from the following [demo](https://tic-tac-toe-fb71e.web.app/).
 
 ## Getting Started
 
